@@ -22,6 +22,6 @@ export class Developer {
   techs: string[];
 
   @Column('point')
-  @Index({ spatial: true })
+  // @Index('2dsphere', { spatial: true }) FIXME: Typeorm doesn't support this with mongodb ;(
   location: Point;
 }
