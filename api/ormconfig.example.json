@@ -1,0 +1,10 @@
+{
+  "type": "mongodb",
+  "url": "URL_HERE",
+  "entities": ["dist/**/*.entity{.ts,.js}"],
+  "synchronize": true,
+  "autoLoadEntities": true,
+  "useNewUrlParser": true,
+  "useUnifiedTopology": true,
+  "w": "majority"
+}
