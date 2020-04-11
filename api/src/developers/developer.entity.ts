@@ -1,9 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Point } from './../point/point.entity';
+import { Column, Entity, ObjectID, ObjectIdColumn, Index } from 'typeorm';
 
 @Entity()
 export class Developer {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @ObjectIdColumn()
+  id?: ObjectID;
 
   @Column()
   name: string;
@@ -19,4 +20,8 @@ export class Developer {
 
   @Column()
   techs: string[];
+
+  @Column('point')
+  @Index({ spatial: true })
+  location: Point;
 }
