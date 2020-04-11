@@ -12,9 +12,19 @@ export class Point {
   @Column()
   coordinates: number[];
 
-  constructor(dto?: DeveloperDTO) {
-    if (dto) {
-      this.coordinates = [dto.longitude, dto.latitude];
+  constructor(dto?: Partial<DeveloperDTO>) {
+    if (dto && dto.longitude && dto.latitude) {
+      this.coordinates = [
+        Number.parseFloat(dto.longitude.toString()),
+        Number.parseFloat(dto.latitude.toString())
+      ];
+    }
+  }
+
+  toJSON() {
+    return {
+      type: this.type,
+      coordinates: this.coordinates
     }
   }
 }

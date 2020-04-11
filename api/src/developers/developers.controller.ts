@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Query } from '@nestjs/common';
 import { Crud, CrudController, CrudRequest, Override, ParsedBody, ParsedRequest } from '@nestjsx/crud';
 import axios from 'axios';
 
@@ -14,6 +14,11 @@ export class DevelopersController implements CrudController<Developer> {
   private githubAPIUrl = 'https://api.github.com/users/';
 
   constructor(public service: DevelopersService) {}
+
+  @Override()
+  getMany(@Query() query: Partial<DeveloperDTO>) {
+    return this.service.getManyCustom(query);
+  }
 
   @Override()
   async createOne(@ParsedRequest() req: CrudRequest, @ParsedBody() dto: DeveloperDTO): Promise<Developer> {
